@@ -45,18 +45,26 @@ if [ ! -f "$FILE_2" ]; then
 	exit 1
 fi
 
-say_ok "All right.Start comparing"	
+say_ok "Start comparing..."	
 
 get_keys_from_file () {
   local file=$1
   grep -v '^#' "$file" | grep '=' | cut -d '=' -f1 | sed 's/ *$//' | sort
   }
 
+get_value_by_key () {
+  local key=$1
+  local file=$2
+
+  grep -E "^$key=" "$file" | cut -d "=" -f2-
+  }
+
 keys_1=$(get_keys_from_file "$FILE_1")
 keys_2=$(get_keys_from_file "$FILE_2")
 
-missing=$(comm -23 <( echo "$keys_2" | sort) <( echo "$keys_1" | sort ))
-extra=$(comm -13 <( echo "$keys_2" | sort) <( echo "$keys_1" | sort ))
+missing_keys=$(comm -23 <( echo "$keys_2" | sort) <( echo "$keys_1" | sort ))
+extra_keys=$(comm -13 <( echo "$keys_2" | sort) <( echo "$keys_1" | sort ))
+common_keys=$(comm -12 <( echo "$keys_2" | sort) <( echo "$keys_1" | sort ))
 
 repeat_char () {
   local char="$1"
@@ -70,10 +78,10 @@ repeat_char () {
   echo "$out"
   }
 
-
 print_diff_table () {
   local missing="$1"
   local extra="$2"
+  local common="$3"
   local col_width=25 # width of column
   local line="+$(repeat_char "-" 27)+$(repeat_char "-" 27)+"
 
@@ -90,9 +98,20 @@ print_diff_table () {
   local max_lines=${#missing_arr[@]}
   [ ${#extra_arr[@]} -gt $max_lines ] && max_lines=${#extra_arr[@]}
   
+  keys_with_diff_values=()
+
+  while IFS= read -r new_key; do
+    val1=$(get_value_by_key "$new_key" "$FILE_1")
+    val2=$(get_value_by_key "$new_key" "$FILE_2")
+  
+    if [ "$val1" != "$val2" ]; then
+      keys_with_diff_values+=("$new_key")
+   fi
+  done <<< "$common_keys"
+ 
   echo 
   echo "$line"
-  printf "| %-*s | %-*s |\n" \
+  printf "| ${YELLOW}%-*s${RESET} | ${YELLOW}%-*s${RESET} |\n" \
   $col_width "Missing variables" $col_width "Extra variables"
   echo "$line"
 
@@ -101,7 +120,18 @@ print_diff_table () {
     $col_width "${missing_arr[i]}" $col_width "${extra_arr[i]}"
   done
   echo "$line"
-  echo
+
+  if [ ${#keys_with_diff_values[@]} -gt 0 ]; then
+    printf "| ${YELLOW}%-*s${RESET}|\n" $(($col_width * 2 + 4)) \
+    "Variables with different values"
+    echo "$line"
+    for new_var in "${keys_with_diff_values[@]}"; do
+      printf "| %-53s |\n" "$new_var"
+    done
+    echo "$line"
+    fi
+    echo
+
 }
 
-print_diff_table "$missing" "$extra"
+print_diff_table "$missing_keys" "$extra_keys" "$common_keys"
