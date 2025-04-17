@@ -34,6 +34,7 @@ Compares two .env-like files:
 Options:
   -h, --help      Show this help
   -v, --version   Show version
+  --fix           Add missing keys to .env with empty values
 EOF
 exit 0
 }
@@ -54,20 +55,66 @@ log_warn () { echo "${YELLOW}$1${RESET}"; }
 log_error () { echo "${RED}$1${RESET}"; }
 #-------------
 
-#---Validation---
-[[ $# -eq 1 && ( "$1" == "-h" || "$1" == "--help")  ]] && show_help
-[[ $# -eq 1 && ( "$1" == "-v" || "$1" == "--version") ]] \
-&& echo "$VERSION - may the env be with you" && exit 0
-[[ $# -ne 2 ]] && log_error "Expected 2 arguments: .env and .env.example" \
- && show_help
-[[ ! -f "$1" ]] && log_error "File not founded: $1" && exit 1
-[[ ! -f "$2" ]] && log_error "File not founded: $2" && exit 1
-#----------------
-
-#---Args---
-FILE="$1"
-EXAMPLE="$2"
+#---Args and flags---
+STRICT_MODE=false
+FIX_MODE=false
+POSITIONAL_ARGS=()
 #----------
+
+#---Parse args-----
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    --fix)
+    FIX_MODE=true
+    shift
+    ;;
+    --strict)
+    STRICT_MODE=true
+    shift
+    ;;
+    -h|--help)
+    show_help
+    ;;
+    -v|--version)
+    echo "$VERSION - may the env be with you"
+    exit 0
+    ;;
+    -*)
+    log_error "Unknown option: $1"
+    exit 1
+    ;;
+    *)
+    POSITIONAL_ARGS+=("$1")
+    shift
+    ;;
+  esac
+done
+#--------------
+
+#----Validate number of files ----
+if [[ ${#POSITIONAL_ARGS[@]} -ne 2 ]]; then
+  log_error "Expected 2 arguments: .env and .env.example"
+  show_help
+fi
+#---------------------------------
+
+#---Assign FILE and EXAMPLE-----
+FILE_1="${POSITIONAL_ARGS[0]}"
+FILE_2="${POSITIONAL_ARGS[1]}"
+
+if [[ "$FILE_1" == *example* ]]; then
+EXAMPLE="$FILE_1"
+FILE="$FILE_2"
+else
+EXAMPLE="$FILE_2"
+FILE="$FILE_1"
+fi
+#-------------------------------
+
+#---Check if files exist-------
+[ ! -f "$EXAMPLE" ] && log_error "File not found: $EXAMPLE" && exit 1
+[ ! -f "$FILE" ] && log_error "File not found: $FILE" && exit 1
+#------------------------------
 
 #---Utilities---
 parse_keys () {
@@ -92,10 +139,9 @@ repeat_char () {
   done
   echo "$out"
   }
-
 #---------------
 
-log "Starting comparsion..."
+log "Starting comparison..."
 
 keys_1=$(parse_keys "$FILE")
 keys_2=$(parse_keys "$EXAMPLE")
@@ -161,3 +207,16 @@ compare_and_print_table () {
 }
 
 compare_and_print_table "$missing_keys" "$extra_keys" "$common_keys"
+
+#---CI---
+if (( ${#missing_arr[@]} > 0 || ${#extra_arr[@]} > 0 || ${#keys_with_diff_values[@]} > 0 )); then
+  log_error "Audit failed. Found issues in env files."
+  exit 1
+  else
+  log_ok "Audit passed. All variables matched."
+  exit 0
+fi
+#---------
+
+
+
