@@ -149,6 +149,8 @@ keys_2=$(parse_keys "$EXAMPLE")
 missing_keys=$(comm -23 <( echo "$keys_2" | sort) <( echo "$keys_1" ))
 extra_keys=$(comm -13 <( echo "$keys_2" | sort) <( echo "$keys_1" ))
 common_keys=$(comm -12 <( echo "$keys_2" | sort) <( echo "$keys_1" ))
+missing_arr=()
+extra_arr=()
 
 compare_and_print_table () {
   local missing="$1"
@@ -157,12 +159,10 @@ compare_and_print_table () {
   local col_width=25 # width of column
   local line="+$(repeat_char "-" $(($col_width + 2)))+$(repeat_char "-" $(($col_width + 2)))+"
 
-  missing_arr=()
   while IFS= read -r str; do
     missing_arr+=("$str")
   done <<< "$missing"
 
-  extra_arr=()
   while IFS= read -r str; do
     extra_arr+=("$str")
   done <<< "$extra"
@@ -207,6 +207,30 @@ compare_and_print_table () {
 }
 
 compare_and_print_table "$missing_keys" "$extra_keys" "$common_keys"
+
+#----Fix flag - auto add missing variables-----
+if FIX_MODE && [[ ${#missing_arr[@]} -gt 0 ]]; then
+  log_warn "Fix mode enabled. Patching missing keys into $FILE..."
+
+  #--Backup---
+  cp "$FILE" "$FILE".bak
+  log_warn "Backup saved as "$FILE".bak"
+
+  for key in ${missing_arr[@]}; do  
+  # NEVER use `>` with $FILE — it will erase it
+  # Always use `>>` (append), or you’ll lose .env!
+  printf "%s\n" "$key"= >> "$FILE"
+  log_ok "Added $key"
+  done
+
+  log_ok "Patch complete"
+  echo
+fi
+#-------------------------------------------------
+
+  
+
+
 
 #---CI---
 if (( ${#missing_arr[@]} > 0 || ${#extra_arr[@]} > 0 || ${#keys_with_diff_values[@]} > 0 )); then
