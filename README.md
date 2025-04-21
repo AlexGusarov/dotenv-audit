@@ -1,8 +1,8 @@
 # 🌱 dotenv-audit
 
-![Shell](https://img.shields.io/badge/Shell-Bash-brightgreen?logo=gnu-bash)
-![Zero dependencies](https://img.shields.io/badge/zero--dependencies-%E2%9C%94%EF%B8%8F-success)
-![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)
+![Shell](https://img.shields.io/badge/Shell-Bash-blue.svg?logo=gnu-bash)
+![Zero dependencies](https://img.shields.io/badge/Zero--dependencies-%E2%9C%94%EF%B8%8F-brightgreen)
+![License: MIT](https://img.shields.io/badge/License-MIT-lightgrey)
 
 > ✅ Minimalistic `.env` audit tool — zero dependencies, max clarity.
 
