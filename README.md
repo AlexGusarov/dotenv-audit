@@ -1,8 +1,8 @@
 # 🌱 dotenv-audit
 
-![bash](https://img.shields.io/badge/Bash-4.x+-blue?logo=gnu-bash)
-![license](https://img.shields.io/github/license/AlexGusarov/dotenv-audit)
-![zero-dependencies](https://img.shields.io/badge/zero--dependencies-✔️-success)
+![Bash](https://img.shields.io/badge/Bash-4.x%2B-blue.svg?logo=gnu-bash)
+![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)
+![Zero dependencies](https://img.shields.io/badge/zero--dependencies-%E2%9C%94%EF%B8%8F-success)
 
 > ✅ Minimalistic `.env` audit tool — zero dependencies, max clarity.
 
@@ -27,7 +27,6 @@ It helps you keep your environment variables in sync by reporting:
 - 🧘 Zero dependencies, pure Bash
 - ✅ Safe for use in production
 
----
 
 ## 🆚 Why not `dotenv-cli`, `dotenv-safe`, or `env-cmd`?
 
@@ -40,7 +39,6 @@ Unlike many npm-based tools, `dotenv-audit` is:
 
 Use it alongside any tool — or by itself — to keep your `.env` files in shape.
 
----
 
 ## 🧩 Use Cases
 
@@ -49,7 +47,6 @@ Use it alongside any tool — or by itself — to keep your `.env` files in shap
 - ✅ **Team onboarding** — ensure new devs don’t miss critical config
 - ✅ **Template enforcement** — validate `.env.example` across projects
 
----
 
 ## 📦 Installation
 
@@ -68,7 +65,6 @@ cd dotenv-audit
 chmod +x dotenv-audit.sh
 ```
 
----
 
 ## 🚀 Usage
 
@@ -88,7 +84,7 @@ JSON output for CI/CD:
 ```bash 
 ./dotenv-audit.sh .env .env.example --json
 ```
----
+
 
 ## 📊 Example Output
 
@@ -113,7 +109,7 @@ When everything is correct:
 ```bash
 ✅ Audit passed. All variables matched.
 ```
----
+
 
 ## 🛠️ Command Line Flags
 
@@ -128,7 +124,6 @@ When everything is correct:
 🛡 When using --fix, a backup is automatically created as .env.bak.
 No lines are overwritten. All additions are appended to the end of .env.
                                
----
 
 ## 🧪 CI Integration (GitHub Actions)
 
@@ -138,7 +133,6 @@ No lines are overwritten. All additions are appended to the end of .env.
     ./dotenv-audit.sh .env .env.example --json
 ```
 
----
 
 ## 👨‍💻 Author
 
@@ -146,7 +140,6 @@ No lines are overwritten. All additions are appended to the end of .env.
 Shell scripting enthusiast and web developer. 
 [github.com/AlexGusarov](https://github.com/AlexGusarov)
 
----
 
 ## 📄 License
 
