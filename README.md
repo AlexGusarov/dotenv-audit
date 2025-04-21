@@ -1,8 +1,8 @@
 # 🌱 dotenv-audit
 
-![Bash](https://img.shields.io/badge/Bash-4.x%2B-blue.svg?logo=gnu-bash)
-![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)
+![Shell](https://img.shields.io/badge/Shell-Bash-brightgreen?logo=gnu-bash)
 ![Zero dependencies](https://img.shields.io/badge/zero--dependencies-%E2%9C%94%EF%B8%8F-success)
+![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)
 
 > ✅ Minimalistic `.env` audit tool — zero dependencies, max clarity.
 
@@ -26,7 +26,7 @@ It helps you keep your environment variables in sync by reporting:
 - 📦 `--json` output for CI pipelines
 - 🧘 Zero dependencies, pure Bash
 - ✅ Safe for use in production
-
+<!-- spacer -->
 
 ## 🆚 Why not `dotenv-cli`, `dotenv-safe`, or `env-cmd`?
 
@@ -38,7 +38,7 @@ Unlike many npm-based tools, `dotenv-audit` is:
 - 🛠️ **Focused** — it's not a dotenv loader, it's a linter/auditor
 
 Use it alongside any tool — or by itself — to keep your `.env` files in shape.
-
+<!-- spacer -->
 
 ## 🧩 Use Cases
 
@@ -46,7 +46,7 @@ Use it alongside any tool — or by itself — to keep your `.env` files in shap
 - ✅ **CI/CD pipelines** — fail early when `.env` gets out of sync
 - ✅ **Team onboarding** — ensure new devs don’t miss critical config
 - ✅ **Template enforcement** — validate `.env.example` across projects
-
+<!-- spacer -->
 
 ## 📦 Installation
 
@@ -64,7 +64,7 @@ git clone https://github.com/AlexGusarov/dotenv-audit.git
 cd dotenv-audit
 chmod +x dotenv-audit.sh
 ```
-
+<!-- spacer -->
 
 ## 🚀 Usage
 
@@ -84,7 +84,7 @@ JSON output for CI/CD:
 ```bash 
 ./dotenv-audit.sh .env .env.example --json
 ```
-
+<!-- spacer -->
 
 ## 📊 Example Output
 
@@ -109,7 +109,7 @@ When everything is correct:
 ```bash
 ✅ Audit passed. All variables matched.
 ```
-
+<!-- spacer -->
 
 ## 🛠️ Command Line Flags
 
@@ -123,7 +123,7 @@ When everything is correct:
 
 🛡 When using --fix, a backup is automatically created as .env.bak.
 No lines are overwritten. All additions are appended to the end of .env.
-                               
+<!-- spacer -->                              
 
 ## 🧪 CI Integration (GitHub Actions)
 
@@ -132,14 +132,14 @@ No lines are overwritten. All additions are appended to the end of .env.
   run: |
     ./dotenv-audit.sh .env .env.example --json
 ```
-
+<!-- spacer -->
 
 ## 👨‍💻 Author
 
 **Alex Gusarov**  
 Shell scripting enthusiast and web developer. 
 [github.com/AlexGusarov](https://github.com/AlexGusarov)
-
+<!-- spacer -->
 
 ## 📄 License
 
