@@ -26,6 +26,7 @@ It helps you keep your environment variables in sync by reporting:
 - 📦 `--json` output for CI pipelines
 - 🧘 Zero dependencies, pure Bash
 - ✅ Safe for use in production
+  
 &nbsp;
 
 ## 🆚 Why not `dotenv-cli`, `dotenv-safe`, or `env-cmd`?
@@ -38,6 +39,7 @@ Unlike many npm-based tools, `dotenv-audit` is:
 - 🛠️ **Focused** — it's not a dotenv loader, it's a linter/auditor
 
 Use it alongside any tool — or by itself — to keep your `.env` files in shape.
+
 &nbsp;
 
 ## 🧩 Use Cases
@@ -46,7 +48,9 @@ Use it alongside any tool — or by itself — to keep your `.env` files in shap
 - ✅ **CI/CD pipelines** — fail early when `.env` gets out of sync
 - ✅ **Team onboarding** — ensure new devs don’t miss critical config
 - ✅ **Template enforcement** — validate `.env.example` across projects
+  
 &nbsp;
+
 ## 📦 Installation
 
 Download the script:
@@ -122,6 +126,7 @@ When everything is correct:
 
 🛡 When using --fix, a backup is automatically created as .env.bak.
 No lines are overwritten. All additions are appended to the end of .env.
+
 &nbsp;                              
 
 ## 🧪 CI Integration (GitHub Actions)
@@ -131,6 +136,7 @@ No lines are overwritten. All additions are appended to the end of .env.
   run: |
     ./dotenv-audit.sh .env .env.example --json
 ```
+
 &nbsp;
 
 ## 👨‍💻 Author
@@ -138,6 +144,7 @@ No lines are overwritten. All additions are appended to the end of .env.
 **Alex Gusarov**  
 Shell scripting enthusiast and web developer. 
 [github.com/AlexGusarov](https://github.com/AlexGusarov)
+
 &nbsp;
 
 ## 📄 License
