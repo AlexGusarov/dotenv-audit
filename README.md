@@ -63,7 +63,7 @@ Use it alongside any tool — or by itself — to keep your `.env` files in shap
 
 ## 📦 Installation
 
-Download the script:
+Download the script ([view source](https://github.com/AlexGusarov/dotenv-audit/blob/main/dotenv-audit.sh)):
 
 ```bash
 curl -O https://raw.githubusercontent.com/AlexGusarov/dotenv-audit/main/dotenv-audit.sh
@@ -108,11 +108,16 @@ When differences are found:
 +---------------------------+---------------------------+
 | Missing variables         | Extra variables           |
 +---------------------------+---------------------------+
-| API_KEY                   | DEBUG_MODE                |
+| CACHE_TTL                 | EXTRA_FEATURE             |
+| SENTRY_DSN                | -                         |
 +---------------------------+---------------------------+
 | Variables with different values                       |
 +-------------------------------------------------------+
-| DATABASE_URL                                          |
+| API_KEY                                               |
+| DEBUG                                                 |
+| LOG_LEVEL                                             |
+| MAX_CONNECTIONS                                       |
+| SECRET_KEY                                            |
 +-------------------------------------------------------+
 
 ❌ Audit failed. Found issues in env files.
