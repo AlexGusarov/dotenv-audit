@@ -4,6 +4,16 @@
 ![Zero dependencies](https://img.shields.io/badge/Zero--dependencies-%E2%9C%94%EF%B8%8F-brightgreen)
 ![License: MIT](https://img.shields.io/badge/License-MIT-lightgrey)
 
+<details>
+  <summary>🎥 <strong>Click to see dotenv-audit in action</strong></summary>
+
+  <br/>
+
+  <p align="center">
+    <img src="./demo/demo.svg" alt="dotenv-audit demo" width="700"/>
+  </p>
+</details>
+
 > ✅ Minimalistic `.env` audit tool — zero dependencies, max clarity.
 
 **`dotenv-audit`** is a lightweight Bash script that compares `.env` and `.env.example` files.  
@@ -69,6 +79,7 @@ chmod +x dotenv-audit.sh
 ```
 &nbsp;
 
+
 ## 🚀 Usage
 
 Basic comparison:
@@ -114,6 +125,15 @@ When everything is correct:
 ```
 &nbsp;
 
+## 🧪 Try It Yourself
+
+Run a demo audit using the example files in `demo/`:
+
+```bash
+./dotenv-audit.sh demo/demo.env demo/demo.env.example
+```
+&nbsp;
+
 ## 🛠️ Command Line Flags
 
 | Flag              | Description                                                |
@@ -150,3 +170,8 @@ Shell scripting enthusiast and web developer.
 ## 📄 License
 
 [MIT License](https://github.com/AlexGusarov/dotenv-audit/blob/main/LICENSE) — free for personal & commercial use.
+
+---
+
+⭐ Found it useful? Give it a star on [GitHub](https://github.com/AlexGusarov/dotenv-audit)!  
+💬 Feedback and PRs are welcome!
