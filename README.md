@@ -63,17 +63,17 @@ Use it alongside any tool — or by itself — to keep your `.env` files in shap
 
 ## 📦 Installation
 
-Download the script ([view source](https://github.com/AlexGusarov/dotenv-audit/blob/main/dotenv-audit.sh)):
+Download the script ([view source](https://github.com/kapibird/dotenv-audit/blob/main/dotenv-audit.sh)):
 
 ```bash
-curl -O https://raw.githubusercontent.com/AlexGusarov/dotenv-audit/main/dotenv-audit.sh
+curl -O https://raw.githubusercontent.com/kapibird/dotenv-audit/main/dotenv-audit.sh
 chmod +x dotenv-audit.sh
 ```
 
 Or clone the repository: 
 
 ```bash
-git clone https://github.com/AlexGusarov/dotenv-audit.git
+git clone https://github.com/kapibird/dotenv-audit.git
 cd dotenv-audit
 chmod +x dotenv-audit.sh
 ```
@@ -166,17 +166,17 @@ No lines are overwritten. All additions are appended to the end of .env.
 
 ## 👨‍💻 Author
 
-**Alex Gusarov**  
+**Alex Gus**  
 Shell scripting enthusiast and web developer. 
-[github.com/AlexGusarov](https://github.com/AlexGusarov)
+[github.com/kapibird](https://github.com/kapibird)
 
 &nbsp;
 
 ## 📄 License
 
-[MIT License](https://github.com/AlexGusarov/dotenv-audit/blob/main/LICENSE) — free for personal & commercial use.
+[MIT License](https://github.com/kapibird/dotenv-audit/blob/main/LICENSE) — free for personal & commercial use.
 
 ---
 
-⭐ Found it useful? Give it a star on [GitHub](https://github.com/AlexGusarov/dotenv-audit)!  
+⭐ Found it useful? Give it a star on [GitHub](https://github.com/kapibird/dotenv-audit)!  
 💬 Feedback and PRs are welcome!
